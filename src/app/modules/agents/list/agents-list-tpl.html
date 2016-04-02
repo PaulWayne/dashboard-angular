@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+  <li><span class="text-muted">VOUS ETES DANS</span></li>
+  <li class="active">Agents</li>
+</ol>
+<div class="row">
+  <div class="col-md-12">
+    <widget>
+      <header>
+        <button type="button" class="btn btn-sm btn-gray mt-n-xs pull-right" ui-sref="app.editAgent({id: null})">Ajouter un agent</button>
+        <h4 class="widget-title">Agents</h4>
+      </header>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Agence</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="agent in vm.agents">
+          <td>{{agent.nom}}</td>
+          <td>{{agent.prenom}}</td>
+          <td><span>{{agent.agence}}</span></td>
+          <td class="text-right">
+            <button type="button" class="btn btn-default" ui-sref="app.editAgent({id: agent._id})">Edit</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.delete(agent)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </widget>
+  </div>
+</div>

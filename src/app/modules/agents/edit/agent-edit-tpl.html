@@ -1,0 +1,78 @@
+<ol class="breadcrumb">
+  <li><span class="text-muted">YOU ARE HERE</span></li>
+  <li class="active">{{vm.agent._id ? 'Edit agent' : 'Create new'}}</li>
+</ol>
+<div class="row">
+  <div class="col-md-8">
+    <widget>
+      <h4 class="mt-0">{{vm.client.id ? 'Edit agent' : 'Create new'}} client</h4>
+      <form novalidate role="form" name="agentForm" class="form-horizontal mt" ng-submit="agentForm.$valid && (vm.agent._id ? vm.update() : vm.save())" >
+        <!-- Nom -->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="nom">Nom</label>
+          <div class="col-sm-10">
+            <input type="text" id="nom" name="nom" class="form-control" ng-model="vm.agent.nom"
+                   required ng-minlength=2 ng-maxlength=50 />
+            <div ng-show="clientForm.nom.$invalid && (agentForm.nom.$dirty || agentForm.$submitted)">
+              <small class="error" ng-show="agentForm.nom.$error.required">
+                Nom is required.
+              </small>
+              <small class="error" ng-show="agentForm.nom.$error.minlength">
+                Nom is required to be at least 2 characters
+              </small>
+              <small class="error" ng-show="agentForm.nom.$error.maxlength">
+                Nom cannot be longer than 50 characters
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Prenom -->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="prenom">Prenom</label>
+          <div class="col-sm-10">
+            <input type="text" id="prenom" name="prenom" class="form-control" ng-model="vm.agent.prenom"
+                   required ng-minlength=2 ng-maxlength=50 />
+            <div ng-show="agentForm.prenom.$invalid && (agentForm.prenom.$dirty || agentForm.$submitted)">
+              <small class="error" ng-show="agentForm.prenom.$error.required">
+                Prenom is required.
+              </small>
+              <small class="error" ng-show="agentForm.prenom.$error.minlength">
+                Prenom is required to be at least 2 characters
+              </small>
+              <small class="error" ng-show="agentForm.prenom.$error.maxlength">
+                Prenom cannot be longer than 50 characters
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Agence -->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="Agence">Agence</label>
+          <div class="col-sm-10">
+            <input type="text" id="agence" name="agence" class="form-control" ng-model="vm.agent.agence"
+                   required ng-minlength=3 ng-maxlength=3 />
+            <div ng-show="agentForm.telephone.$invalid && (agentForm.telephone.$dirty || clientForm.$submitted)">
+              <small class="error" ng-show="agentForm.agence.$error.required">agentForm</small>
+              <small class="error" ng-show="agentForm.agence.$error.minlength">
+                Telephone is required to be at least 3 characters
+              </small>
+              <small class="error" ng-show="agentForm.agence.$error.maxlength">
+                Telephone cannot be longer than 3 characters
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Admin -->
+        <div class="form-group">
+
+        </div>
+        <div class="text-right">
+                    <span ng-if="vm.showReturnBtn">
+                        <button type="button" class="btn" ng-click="vm.return()">Return</button>
+                    </span>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </widget>
+  </div>
+</div>

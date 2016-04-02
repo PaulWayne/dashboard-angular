@@ -1,0 +1,104 @@
+<header class="logo">
+  <a>Obama<sup class="text-danger fw-semi-bold">Transfert</sup></a>
+</header>
+<ul class="sidebar-nav">
+  <li>
+    <a ui-sref="app.dashboard" ui-sref-active="active"><i class="glyphicon glyphicon-tree-conifer mr-xs"></i> Dashboard</a>
+  </li>
+  <li>
+    <a data-target="#sidebar-dashboard-1" data-toggle="collapse" data-parent="#sidebar"
+       ng-class="$state.includes('app.posts') || $state.includes('app.editPost') ? 'active' : ''">
+      <i class="glyphicon glyphicon-list-alt mr-xs"></i>
+      Posts
+      <b class="caret"></b>
+    </a>
+    <ul id="sidebar-dashboard-1" class="collapse out">
+      <li><a ui-sref="app.posts" ui-sref-active="active">Show all</a></li>
+      <li>
+        <a ui-sref="app.editPost" ui-sref-active="active">
+          {{$state.includes('app.editPost') && $state.params.id ? 'Post editing' : 'Create new'}}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a data-target="#sidebar-dashboard-2" data-toggle="collapse" data-parent="#sidebar"
+       ng-class="$state.includes('app.transferts') || $state.includes('app.editTransfert') ? 'active' : ''">
+      <i class="glyphicon glyphicon-euro mr-xs"></i>
+      Transferts
+      <b class="caret"></b>
+    </a>
+    <ul id="sidebar-dashboard-2" class="collapse out">
+      <li><a ui-sref="app.transferts" ui-sref-active="active">Show all</a></li>
+      <li>
+        <a ui-sref="app.editTransfert" ui-sref-active="active">
+          {{$state.includes('app.editTransfert') && $state.params.id ? 'Transfert editing' : 'Create new'}}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a data-target="#sidebar-dashboard-3" data-toggle="collapse" data-parent="#sidebar"
+       ng-class="$state.includes('app.clients') || $state.includes('app.editPost') ? 'active' : ''">
+      <i class="glyphicon glyphicon-user mr-xs"></i>
+      Clients
+      <b class="caret"></b>
+    </a>
+    <ul id="sidebar-dashboard-3" class="collapse out">
+      <li><a ui-sref="app.clients" ui-sref-active="active">Show all</a></li>
+      <li>
+        <a ui-sref="app.editClient" ui-sref-active="active">
+          {{$state.includes('app.editClient') && $state.params.id ? 'Client editing' : 'Create new'}}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a data-target="#sidebar-dashboard-4" data-toggle="collapse" data-parent="#sidebar"
+       ng-class="$state.includes('app.agences') || $state.includes('app.editAgence') ? 'active' : ''">
+      <i class="glyphicon glyphicon-globe mr-xs"></i>
+      Agences
+      <b class="caret"></b>
+    </a>
+    <ul id="sidebar-dashboard-4" class="collapse out">
+      <li><a ui-sref="app.agences" ui-sref-active="active">Show all</a></li>
+      <li>
+        <a ui-sref="app.editAgence" ui-sref-active="active">
+          {{$state.includes('app.editAgence') && $state.params.id ? 'Agence editing' : 'Create new'}}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a data-target="#sidebar-dashboard-5" data-toggle="collapse" data-parent="#sidebar"
+       ng-class="$state.includes('app.agents') || $state.includes('app.editAgent') ? 'active' : ''">
+      <i class="glyphicon glyphicon-grain mr-xs"></i>
+      Agents
+      <b class="caret"></b>
+    </a>
+    <ul id="sidebar-dashboard-5" class="collapse out">
+      <li><a ui-sref="app.agents" ui-sref-active="active">Show all</a></li>
+      <li>
+        <a ui-sref="app.editAgent" ui-sref-active="active">
+          {{$state.includes('app.editAgent') && $state.params.id ? 'Agent editing' : 'Create new'}}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a ui-sref="app.profile" ui-sref-active="active">
+      <i class="glyphicon glyphicon-user mr-xs"></i>
+      Profile
+    </a>
+  </li>
+  <li class="hidden-md hidden-lg">
+    <a href="#" ng-click="logout()">Logout</a>
+  </li>
+</ul>
+
+<footer class="sidebar-footer">
+  <p class="small text-gray-lighter opacity-60 ml-xs mr-xs mb-xs">58% ready</p>
+  <div class="progress progress-xs mb-sm">
+    <div class="progress-bar progress-bar-success" style="width: 58%"></div>
+  </div>
+</footer>

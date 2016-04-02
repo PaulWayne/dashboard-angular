@@ -1,0 +1,40 @@
+<ol class="breadcrumb">
+  <li><span class="text-muted">VOUS ETES DANS</span></li>
+  <li class="active">Clients</li>
+</ol>
+<div class="row">
+  <div class="col-md-12">
+    <widget>
+      <header>
+        <button type="button" class="btn btn-sm btn-gray mt-n-xs pull-right" ui-sref="app.editPost({id: null})">Ajouter un client</button>
+        <h4 class="widget-title">Clients</h4>
+      </header>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Telephone</th>
+          <th>Adresse</th>
+          <th>Email</th>
+          <th>Date de Naissance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="client in vm.clients">
+          <td>{{client.nom}}</td>
+          <td>{{client.prenom}}</td>
+          <td><span>{{client.phone}}</span></td>
+          <td>{{client.adresse}}</td>
+          <td>{{client.email}}</td>
+          <td>{{client.dateNaissance | date :'dd-MM-yyyy'}}</td>
+          <td class="text-right">
+            <button type="button" class="btn btn-default" ui-sref="app.editClient({id: client._id})">Edit</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.delete(client)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </widget>
+  </div>
+</div>

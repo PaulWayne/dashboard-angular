@@ -1,0 +1,42 @@
+<ol class="breadcrumb">
+    <li><span class="text-muted">VOUS ETES DANS</span></li>
+    <li class="active">Transferts</li>
+</ol>
+<div class="row">
+    <div class="col-md-12">
+        <widget>
+            <header>
+                <button type="button" class="btn btn-sm btn-gray mt-n-xs pull-right" ui-sref="app.editPost({id: null})">Créer un nouveau transfert</button>
+                <h4 class="widget-title">Transferts</h4>
+            </header>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Client Reception</th>
+                    <th>Agence Reception</th>
+                    <th>Montant</th>
+                    <th>Total</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="transfert in vm.transferts">
+                    <td>{{transfert.code}}</td>
+                    <td>{{transfert.clientReception.nom}} - {{transfert.clientReception.prenom}}</td>
+                    <td>{{transfert.agenceReception}}</td>
+                    <td>{{transfert.montant}}</td>
+                    <td>{{transfert.total}}</td>
+                    <td>{{transfert.statut}}</td>
+                    <td>{{transfert.dateCreation | date: 'short'}}</td>
+                      <td class="text-right">
+                        <button type="button" class="btn btn-default" ui-sref="app.editTransfert({id: transfert._id})">Edit</button>
+                        <button type="button" class="btn btn-danger" ng-click="vm.delete(transfert)">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </widget>
+    </div>
+</div>

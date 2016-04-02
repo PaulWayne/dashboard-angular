@@ -1,0 +1,158 @@
+<ol class="breadcrumb">
+  <li><span class="text-muted">YOU ARE HERE</span></li>
+  <li class="active">{{vm.transfert._id ? 'Edit transfert' : 'Create new'}}</li>
+</ol>
+<div class="row">
+  <div class="col-md-12">
+    <widget>
+      <h4 class="mt-0">{{vm.transfert._id ? 'Edit transfert' : 'Create new'}} Transfert</h4>
+      <form novalidate role="form" name="transfertForm" class="form-horizontal mt" ng-submit="transfertForm.$valid && (vm.transfert._id ? vm.update() : vm.save())" >
+        <!-- Code -->
+         <div class="form-group" ng-if="vm.transfert._id" >
+          <label class="col-md-2 col-sm-4 control-label" for="code">Code</label>
+          <div class="col-md-4 col-sm-8">
+            <input type="text" id="code" name="code" class="form-control" ng-model="vm.transfert.code" ng-readonly="vm.transfert.code !==''" disabled/>
+            <div ng-show="transfertForm.code.$invalid && (transfertForm.code.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.code.$dirty">
+                Code could not to be modify
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Line Agences-->
+        <div class="form-group">
+          <label class="col-md-2 col-sm-4 control-label" for="agenceEnvoi">Agence Envoi</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.agenceEnvoi" ng-options="agence as agence.nom for agence in vm.agenceList" name="agenceEnvoi" id="agenceEnvoi" required class="form-control slect"></select>
+            <div ng-show="transfertForm.agenceEnvoi.$invalid && (transfertForm.agenceEnvoi.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agenceEnvoi.$error.required">
+                Agence Envoi is required.
+              </small>
+            </div>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="agenceReception">Agence Reception</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.agenceReception" ng-options="agence.nom for agence in vm.agenceList" name="agenceReception" id="agenceReception" required class="form-control slect"></select>
+            <div ng-show="transfertForm.agenceReception.$invalid && (transfertForm.agenceReception.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agenceReception.$error.required">
+                Agence Reception is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Line Agents-->
+        <div class="form-group">
+          <label class="col-md-2 col-sm-4 control-label" for="agentEnvoi">Operateur Envoi</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.agentEnvoi" ng-options="agent as (agent.nom+' - '+agent.prenom) for agent in vm.agentList" name="agentEnvoi" id="agentEnvoi" required class="form-control slect"></select>
+            <div ng-show="transfertForm.agentEnvoi.$invalid && (transfertForm.agentEnvoi.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.clientEnvoi.$error.required">
+                Client Envoi is required.
+              </small>
+            </div>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="agentReception">Operateur Reception</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.agentReception" ng-options="agent  as (agent.nom+' - '+agent.prenom) for agent in vm.agentList" name="agentReception" id="agentReception" required class="form-control slect"></select>
+            <div ng-show="transfertForm.agentReception.$invalid && (transfertForm.agentReception.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agentReception.$error.required">
+                Agent  Reception is required.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line Clients-->
+        <div class="form-group">
+          <label class="col-md-2 col-sm-4 control-label" for="clientEnvoi">Client Envoi</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.clientEnvoi" ng-options="client as (client.nom +' - '+ client.prenom) for client in vm.clientsList" name="clientEnvoi" id="clientEnvoi" required class="form-control slect"></select>
+            <div ng-show="transfertForm.clientEnvoi.$invalid && (transfertForm.clientEnvoi.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agentEnvoi.$error.required">
+                Client is required.
+              </small>
+            </div>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="clientReception">Client Reception</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.clientReception" ng-options="client as (client.nom+ ' - '+ client.prenom) for client in vm.clientsList" name="clientReception" id="clientReception" required class="form-control slect"></select>
+            <div ng-show="transfertForm.clientReception.$invalid && (transfertForm.clientReception.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agentReception.$error.required">
+                Client  Reception is required.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Line 1-->
+        <div class="form-group">
+          <label class="col-md-2 col-sm-4 control-label" for="montant">Montant</label>
+          <div class="col-md-4 col-sm-8">
+            <input type="text"  name="montant" id="montant"  class="form-control" ng-model="vm.transfert.montant" ng-change="vm.transfertMontantChange()" ng-pattern="vm.regex" ng-maxlength="5" />
+            <div ng-show="transfertForm.montant.$invalid && (transfertForm.montant.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.montant.$error.required">
+                Montant is required.
+              </small>
+              <small class="error" ng-show="transfertForm.montant.$error.maxlength">
+                Montant is too long
+              </small>
+              <small class="error" ng-show="transfertForm.montant.$error.pattern">
+                Not a valid number !
+              </small>
+              <small class="error" ng-show="transfertForm.montant.$dirty">
+                PAPAPAPAP
+              </small>
+            </div>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="frais">Frais</label>
+          <div class="col-md-2 col-sm-8">
+            <input type="text" ng-model="vm.transfert.frais" name="frais" id="frais" required class="form-control" ng-maxlength="4" ng-readonly="true"/>
+            <div ng-show="transfertForm.frais.$invalid && (transfertForm.frais.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.frais.$error.required">
+                Frais is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- Details Line 2-->
+        <div class="form-group">
+          <label class="col-md-2 col-sm-4 control-label" for="statut">Statut</label>
+          <div class="col-md-4 col-sm-8">
+            <select  ng-model="vm.transfert.statut" ng-options="key as key for key in vm.statutList" name="statut" id="statut" required class="form-control slect"></select>
+            <div ng-show="transfertForm.clientReception.$invalid && (transfertForm.clientReception.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agentReception.$error.required">
+                Client  Reception is required.
+              </small>
+            </div>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="total">Prix Total</label>
+          <div class="col-md-2 col-sm-8">
+            <input type="text" ng-model="vm.transfert.total"  name="total" id="total"  class="form-control" required readonly/>
+            <div ng-show="transfertForm.clientReception.$invalid && (transfertForm.clientReception.$dirty || transfertForm.$submitted)">
+              <small class="error" ng-show="transfertForm.agentReception.$error.required">
+                Client  Reception is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!--Dates -->
+        <div class="form-group" ng-if="vm.transfert_id">
+          <label class="col-md-2 col-sm-4 control-label" for="dateCreate">Date de Creation</label>
+          <div class="col-md-4 col-sm-8">
+            <input type="date"  ng-model="vm.transfert.dateCreation" name="dateCreate" id="dateCreate" required class="form-control slect" ng-readonly="true"/>
+          </div>
+          <label class="col-md-2 col-sm-4 control-label" for="dateModification" ng-if="vm.transfert.dateModification ===''">Date de Modification</label>
+          <div class="col-md-4 col-sm-8" ng-if="vm.transfert.dateModification ===''" >
+            <input type="date"  ng-model="vm.transfert.dateModification" name="dateModification" id="dateModification" required class="form-control slect" ng-readonly="true"/>
+          </div>
+        </div>
+        <div class="text-right">
+                    <span ng-if="vm.showReturnBtn">
+                        <button type="button" class="btn" ng-click="vm.return()">Return</button>
+                    </span>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </widget>
+  </div>
+</div>
